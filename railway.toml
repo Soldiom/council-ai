@@ -1,0 +1,24 @@
+# Railway.app deployment configuration
+# Free tier: https://railway.app/pricing
+# Deploy: Connect GitHub repo to Railway
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "uvicorn api.main:app --host 0.0.0.0 --port $PORT"
+healthcheckPath = "/health"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
+
+[[deploy.environmentVariables]]
+name = "DEFAULT_PROVIDER"
+value = "hf_inference"
+
+[[deploy.environmentVariables]]
+name = "HF_INFERENCE_MODEL"
+value = "mistralai/Mistral-7B-Instruct-v0.2"
+
+# Add your HF_API_TOKEN as a Railway secret
+# Railway Dashboard > Variables > HF_API_TOKEN

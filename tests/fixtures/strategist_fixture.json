@@ -1,0 +1,23 @@
+{
+  "agent": "strategist",
+  "input": "How should we launch an AI-powered customer service platform in the GCC market?",
+  "expected_elements": [
+    "market analysis",
+    "competitive positioning",
+    "regulatory considerations",
+    "cultural factors",
+    "30/60/90 day plan",
+    "risk assessment"
+  ],
+  "context": {
+    "region": "GCC",
+    "industry": "AI/Technology",
+    "use_case": "customer service automation"
+  },
+  "validation_criteria": {
+    "min_length": 200,
+    "should_include_numbers": true,
+    "should_mention_gcc": true,
+    "should_have_timeline": true
+  }
+}

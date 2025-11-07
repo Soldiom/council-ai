@@ -1,0 +1,14 @@
+{
+  "claude-3-opus_general": {
+    "total_queries": 40,
+    "total_latency": 0.0,
+    "total_cost": 0.0,
+    "avg_confidence": 0.0
+  },
+  "gpt-4-turbo_general": {
+    "total_queries": 40,
+    "total_latency": 0.0,
+    "total_cost": 0.0,
+    "avg_confidence": 0.0
+  }
+}

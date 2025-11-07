@@ -1,0 +1,47 @@
+[project]
+name = "ai-council-agent"
+version = "0.1.0"
+description = "Council of Infinite Innovators - VS Code Agent Template"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "httpx",
+    "python-dotenv",
+    "langchain-core",
+    "langchain-openai",
+    "langgraph",
+    "tiktoken",
+    "numpy",
+    "pandas",
+    "faiss-cpu",
+    "ruff",
+    "pytest",
+    "pytest-asyncio",
+    "typer",
+    "rich"
+]
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["council*", "cli*", "api*", "plans*"]

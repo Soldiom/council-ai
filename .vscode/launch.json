@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "API Server",
+      "type": "python",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["api.main:app", "--reload"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "CLI (Strategist)",
+      "type": "python",
+      "request": "launch",
+      "module": "cli.app",
+      "args": ["run", "--agent", "strategist", "--input", "Draft GTM strategy"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "CLI (Multi-Agent Council)",
+      "type": "python",
+      "request": "launch",
+      "module": "cli.app",
+      "args": ["council", "--agents", "strategist,architect,engineer", "--input", "Design scalable AI platform"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}

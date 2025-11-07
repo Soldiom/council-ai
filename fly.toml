@@ -1,0 +1,58 @@
+# Fly.io deployment configuration
+# Free tier: https://fly.io/docs/about/pricing/
+# Deploy: flyctl launch (then flyctl deploy)
+
+app = "ai-council-agent"
+primary_region = "sjc"  # Change to your preferred region
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  DEFAULT_PROVIDER = "hf_inference"
+  HF_INFERENCE_MODEL = "mistralai/Mistral-7B-Instruct-v0.2"
+  PORT = "8000"
+
+# Add HF_API_TOKEN as secret:
+# flyctl secrets set HF_API_TOKEN=hf_your_token_here
+
+[[services]]
+  http_checks = []
+  internal_port = 8000
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "10s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
+
+  [[services.http_checks]]
+    interval = "10s"
+    grace_period = "5s"
+    method = "get"
+    path = "/health"
+    protocol = "http"
+    timeout = "2s"
+    tls_skip_verify = false
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
